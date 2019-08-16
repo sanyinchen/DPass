@@ -1,0 +1,20 @@
+/*
+ * Copyright (C) 2019 Baidu, Inc. All Rights Reserved.
+ */
+afterEvaluate {
+    project.rootProject.allprojects {
+        def itProject = it
+        itProject.configurations.all {
+            def itConfig = it
+            itConfig.resolutionStrategy {
+
+                dependencySubstitution {
+
+                    substitute project(':testa') with project(':testb')
+
+                    substitute project(':testb') with project(':testc')
+                }
+            }
+        }
+    }
+}
